@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json())
 
   
-app.post('/', async (req, res) => {
+app.post('/email', async (req, res) => {
   console.log(req.body);
   const { error } = schema.validate(req.body);
   if (error) {
@@ -33,8 +33,8 @@ app.post('/', async (req, res) => {
 });
 
 app.all('*', (req, res) => {
-  console.log(req);
-  return res.status(404);
+  console.log(req.originalUrl);
+  return res.status(404).send();
 })
   
 app.listen(PORT, function(err){

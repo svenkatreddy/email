@@ -6,11 +6,6 @@ const schema = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2 }).max(60).required(),
 });
 
-
-schema.validate({ username: 'abc', birth_year: 1994 });
-// -> { value: { username: 'abc', birth_year: 1994 } }
-
-
 const bodyParser = require('body-parser');
 var sendEmail = require('./send-mail');
 var app = express();

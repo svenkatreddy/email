@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json())
 
   
-app.post('/mail', async (req, res) => {
+app.post('/', async (req, res) => {
   console.log(req.body);
   const { error } = schema.validate(req.body);
   if (error) {
@@ -32,7 +32,8 @@ app.post('/mail', async (req, res) => {
   return res.status(200).send("done")
 });
 
-app.all('', (req, res) => {
+app.all('*', (req, res) => {
+  console.log(req);
   return res.status(404);
 })
   

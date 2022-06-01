@@ -24,13 +24,14 @@ const sendEmail = async (message) => {
   let info, emailError;
   try {
     info = await transporter.sendMail(mailOptions);
-    console.log(info);
-    console.log("Email sent successfully");
+    //console.log(info);
+    writeToFile(true, message);
+    console.log(`Email sent successfully for ${message}`);
   }
   catch (err){
-    writeToFile(message);
+    writeToFile(false, message);
     emailError = err;
-    console.log("Error sending email: " + err);
+    console.log("Error sending email for ${message}: " + err);
   }
   return { info, emailError };
 }

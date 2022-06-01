@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const writeToFile = require('./write-to-file');
 
 const sendEmail = async (message) => {
   let transporter = nodemailer.createTransport({
@@ -15,8 +16,8 @@ const sendEmail = async (message) => {
 
   let mailOptions = {
     from: 'polyviewhealth@gmail.com',
-    to: 'svenkatreddyms@gmail.com',
-    subject: 'Polyview health email subscription',
+    to: 'svenkatreddyms@gmail.com,adam@x31.net',
+    subject: 'New Polyview health subscription',
     text: `Hi, you have new email subscription from email: ${message}`,
   };
 
@@ -27,6 +28,7 @@ const sendEmail = async (message) => {
     console.log("Email sent successfully");
   }
   catch (err){
+    writeToFile(message);
     emailError = err;
     console.log("Error sending email: " + err);
   }

@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 const writeToFile = require('./write-to-file');
+const toEmails = process.env.TO_EMAILS || 'polyviewhealth@gmail.com';
+console.log(`send to emails are ${toEmails}`);
 
 const sendEmail = async (message) => {
   let transporter = nodemailer.createTransport({
@@ -16,8 +18,8 @@ const sendEmail = async (message) => {
 
   let mailOptions = {
     from: 'polyviewhealth@gmail.com',
-    to: 'svenkatreddyms@gmail.com,adam@x31.net',
-    subject: 'New Polyview health subscription',
+    to: toEmails,
+    subject: 'Polyview Health follow up',
     text: `Hi, you have new email subscription from email: ${message}`,
   };
 
